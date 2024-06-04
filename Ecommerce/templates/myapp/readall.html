@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+<title>Titulo da Página</title>
+{% endblock %}
+{% block content %}
+{% for itens in item %}
+    <div class="container">
+    {%if itens.path%}
+    <img src="{{itens.path.url}}" alt="itens.name" width="200px" height="200px">
+    {%endif%}
+    <br>
+    <strong>Nome:</strong>{{itens.name}}
+    <br>
+    <strong>Descrição:</strong>{{itens.descript}}
+    <a href="{% url 'editar_item' itens.id %}" class="btn btn-warning">Editar</a>
+    <a href="{% url 'deletar_item' itens.id %}" class="btn btn-danger">Deletar</a>
+    </div>  
+
+{% endfor %}
+  {% include 'partials/_footer.html' %}
+     
+{% endblock %}
